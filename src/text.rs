@@ -10,7 +10,7 @@ use std::sync::Arc;
 use kurbo::{Affine, BezPath, Size};
 use parley::{
     Alignment, AlignmentOptions, FontContext, FontFamily, FontStyle, FontWeight, Layout,
-    LayoutContext, LineHeight, PositionedLayoutItem, StyleProperty,
+    LayoutContext, LineHeight, OverflowWrap, PositionedLayoutItem, StyleProperty,
 };
 use skrifa::instance::{LocationRef, NormalizedCoord};
 use skrifa::outline::{DrawSettings, OutlinePen};
@@ -212,6 +212,7 @@ impl TextEngine {
         builder.push_default(StyleProperty::LineHeight(LineHeight::FontSizeRelative(
             style.line_height,
         )));
+        builder.push_default(StyleProperty::OverflowWrap(OverflowWrap::Anywhere));
         if style.letter_spacing != 0.0 {
             builder.push_default(StyleProperty::LetterSpacing(style.letter_spacing));
         }
